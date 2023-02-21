@@ -16,5 +16,5 @@ jobs:
         with:
           bootstrap: vendor/autoload.php
           args: --coverage-text
-          version: "8"
+          version: "9"
           php_version: "7.3"
