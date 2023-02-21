@@ -1,4 +1,4 @@
-name: CI PHP 7.3
+name: CI PHP 7.2
 
 on: [push]
 
@@ -15,4 +15,4 @@ jobs:
         uses: php-actions/phpunit@v3
         with:
           version: "8"
-          php_version: "7.3"
+          php_version: "7.2"
