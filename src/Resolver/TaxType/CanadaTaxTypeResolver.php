@@ -41,10 +41,12 @@ class CanadaTaxTypeResolver implements TaxTypeResolverInterface
 	{
 		$customerAddress = $context->getCustomerAddress();
 		$storeAddress = $context->getStoreAddress();
-		if ($customerAddress->getCountryCode() != 'CA' || $storeAddress->getCountryCode() != 'CA') {
+
+		if ($customerAddress->getCountryCode() != 'CA'){// || $storeAddress->getCountryCode() != 'CA') {
 			// The customer or the store is not in Canada.
 			return [];
 		}
+
 		// Canadian tax types are divided in two separate levels:
 		// FEDERAL - GST and HST always apply between canadian stores and clients
 		// PROVINCIAL - PST, QST and RST only apply when the store is registered in the client's province
@@ -58,15 +60,16 @@ class CanadaTaxTypeResolver implements TaxTypeResolverInterface
 				// Federal taxes (GST or HST)
 				if ($taxType->getGenericLabel() == 'GST' || $taxType->getGenericLabel() == 'HST') {
 					$results[] = $taxType;
-				}
-				// Provincial taxes (PST, QST, RST), where the store is registered
-				$storeRegistrationTaxProvinces = $context->getStoreRegistrations();
-				// Add store's province of origin, as it should always be registered there
-				$storeRegistrationTaxProvinces[] = !in_array($storeProvince, $storeRegistrationTaxProvinces) ? $storeProvince : '';
-				if (!empty($storeRegistrationTaxProvinces)) {
-					foreach ($storeRegistrationTaxProvinces as $province) {
-						if ($zone->getMembers()->first()->getAdministrativeArea() == $province) {
-							$results[] = $taxType;
+				} else {
+					// Provincial taxes (PST, QST, RST), where the store is registered
+					$storeRegistrationTaxProvinces = $context->getStoreRegistrations();
+					// Add store's province of origin, as it should always be registered there
+					$storeRegistrationTaxProvinces[] = !in_array($storeProvince, $storeRegistrationTaxProvinces) ? $storeProvince : '';
+					if (!empty($storeRegistrationTaxProvinces)) {
+						foreach ($storeRegistrationTaxProvinces as $province) {
+							if ($zone->getMembers()->first()->getAdministrativeArea() == $province) {
+								$results[] = $taxType;
+							}
 						}
 					}
 				}
