@@ -1,0 +1,16 @@
+name: commerceguys-tax
+id: ari:cloud:compass:99f81cd3-6055-4ddd-97a3-655f84dd430a:component/a6a6633a-8303-46fd-94f0-c5635a90b6ba/4586ca93-1669-414c-b60b-43419eb75075
+description: A PHP 5.5+ tax library.
+configVersion: 1
+typeId: SERVICE
+fields:
+  tier: 4
+links: []
+relationships:
+  DEPENDS_ON: []
+labels:
+  - ecommerce
+  - language:php
+  - source:github
+  - tax
+customFields: null
