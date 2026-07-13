@@ -40,6 +40,17 @@
                     "start_date": "2015-07-01"
                 }
             ]
+        },
+        {
+            "id": "gr_x_vat_third_reduced",
+            "name": "Third Reduced",
+            "amounts": [
+                {
+                    "id": "gr_x_vat_third_reduced_2023",
+                    "amount": 0.03,
+                    "start_date": "2023-10-01"
+                }
+            ]
         }
     ]
 }
